@@ -46,13 +46,13 @@ if($subs.GetType().IsArray -and $subs.length -gt 1){
 az config set extension.dynamic_install_allow_preview=true --only-show-errors
 
 # Register resource providers
-Write-Host "Registering resource providers...";
-$provider_list = "Microsoft.Storage", "Microsoft.Databricks"
-foreach ($provider in $provider_list){
-    $result = Register-AzResourceProvider -ProviderNamespace $provider
-    $status = $result.RegistrationState
-    Write-Host "$provider : $status"
-}
+#Write-Host "Registering resource providers...";
+#$provider_list = "Microsoft.Storage", "Microsoft.Databricks"
+#foreach ($provider in $provider_list){
+#    $result = Register-AzResourceProvider -ProviderNamespace $provider
+#    $status = $result.RegistrationState
+#    Write-Host "$provider : $status"
+#}
 
 # Get a list of locations for Azure Databricks. These regions support Serverless compute for notebooks, jobs, pipelines, and SQL warehouses
 $supported_regions = "australiaeast","australiasoutheast","brazilsouth","canadacentral","canadaeast","centralindia","centralus","eastasia","eastus","eastus2","francecentral","japaneast","koreacentral","mexicocentral","northcentralus","northeurope","norwayeast","southafricanorth","southcentralus","southeastasia","swedencentral","switzerlandnorth","uaenorth","uksouth","westcentralus","westeurope","westus","westus2","westus3"
