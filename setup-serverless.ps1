@@ -4,6 +4,7 @@ write-host "Starting script at $(Get-Date)"
 # Generate unique random suffix
 [string]$suffix =  -join ((48..57) + (97..122) | Get-Random -Count 7 | % {[char]$_})
 $resourceGroupName = "msl-v1qlbcu"
+$displayname = (Get-AzADUser -SignedIn).DisplayName
 
 Write-Output "Using resource group name: $resourceGroupName"
 
@@ -77,7 +78,7 @@ else {
 write-host "Using region: $Region"
 Write-Host "Creating $resourceGroupName resource group ..."
 #az group create --name $resourceGroupName --location $Region --output none
-$dbworkspace = "databricks-$suffix"
+$dbworkspace = "databricks-$displayname"
 Write-Host "Creating $dbworkspace Azure Databricks workspace in $resourceGroupName resource group..."
 az databricks workspace create --name $dbworkspace --resource-group $resourceGroupName --location $Region --sku premium --output none
 
